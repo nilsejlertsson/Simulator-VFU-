@@ -32,29 +32,31 @@ import java.util.ArrayList;
 public class Simulator {
 
     /**
-     * Main method loop the sensors value and print for debug
+     * Main method loop the sensors value and print to stdout
      *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
+
             collectionOfSensors().stream().map((sensor) -> {
                 sensor.generateValue();
                 return sensor;
-            }).forEach((sensorInCollection) -> {
-                if (sensorInCollection instanceof TempatureSensor) {
-                    System.out.println("Temp value: " + sensorInCollection.getValue());
-                } else if (sensorInCollection instanceof SpeedSensor) {
-                    System.out.println("Speed value: " + sensorInCollection.getValue());
-                } else if (sensorInCollection instanceof MoistSensor) {
-                    System.out.println("Moist value: " + sensorInCollection.getValue());
+            }).forEach((sensor) -> {
+                if (sensor instanceof TempatureSensor) {
+                    System.out.println("Temp value: " + sensor.getValue());
+                } else if (sensor instanceof SpeedSensor) {
+                    System.out.println("Speed value: " + sensor.getValue());
+                } else if (sensor instanceof MoistSensor) {
+                    System.out.println("Moist value: " + sensor.getValue());
                 }
                 /*Add more options here, only for debug.*/
             });
             System.out.println("");
+
         }
     }
-    
+
     /*Add sensor objects in collectionOfSensors*/
     public static ArrayList<Sensor> collectionOfSensors() {
         ArrayList<Sensor> sensorList = new ArrayList();

@@ -26,35 +26,38 @@ import Generator.Generator;
 
 /**
  * Abstract parent sensor, enforce the use of a constructor on the children :-).
- * 
+ *
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
 public abstract class Sensor {
 
-     /*Future indentification, can be removed if not desired*/
+    /*Future indentification, can be removed if not desired*/
     protected enum SensorType {
 
         TEMPATURE, PRESSURE, MOIST, SPEED;
     }
-
+    /*Pass down to children, by protected fields*/
     protected int max, min;
     protected SensorType sensorType;
     protected int value;
-
+    protected GenerateNumbers generatedSeed;
+    
     public Sensor(int max, int min) {
+        generatedSeed = new Generator(max, min);
         this.max = max;
         this.min = min;
+        
     }
-    
-    /*Children Must implement*/
+
+    /*Children must implement*/
     public abstract int getValue();
+
     public abstract Enum getSensorType();
-    
+
     /*Not enforced but can be overriden by the children*/
     public void generateValue() {
 
-        GenerateNumbers gen = new Generator(max, min);
-        value = gen.getRandom();
+        value = generatedSeed.getRandom();
     }
 }

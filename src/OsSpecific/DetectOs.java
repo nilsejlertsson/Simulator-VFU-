@@ -17,12 +17,18 @@
 package OsSpecific;
 
 /**
- * For future use... 
+ * For future use...
+ *
  * @author Christian Bodelsson <bodelsson@gmail.com>
- * 
+ *
  */
 public class DetectOs {
 
+    private enum Os {
+
+        WINDOWS, LINUX, MAC;
+
+    }
 
     public static Enum getOsType() {
         String os = System.getProperty("os.name").toLowerCase();
