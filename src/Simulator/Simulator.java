@@ -21,11 +21,10 @@ import Sensors.TempatureSensor;
 import Sensors.SpeedSensor;
 import Sensors.Sensor;
 import java.util.ArrayList;
-
 /**
  * Simulator with the purpose of simulate voltage levels from a ADC. Bluetooth
  * is missing,(will be added soon) but should not be a problem to add. Just set
- * up as a bluetooth client and push to server.
+ * up as a bluetooth server and push to client.
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
@@ -55,6 +54,7 @@ public class Simulator {
             System.out.println("");
 
         }
+        System.out.println("");
     }
 
     /*Add sensor objects in collectionOfSensors*/
