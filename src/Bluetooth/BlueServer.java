@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package Bluetooth;
-
+import javax.bluetooth.*;
 /**
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
@@ -23,7 +23,8 @@ package Bluetooth;
 public class BlueServer {
 
     public BlueServer() {
-
+     
+        System.out.println(LocalDevice.getProperty("bluecove.stack"));
     }
 
 }

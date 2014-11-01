@@ -21,6 +21,7 @@ import Sensors.TempatureSensor;
 import Sensors.SpeedSensor;
 import Sensors.Sensor;
 import java.util.ArrayList;
+
 /**
  * Simulator with the purpose of simulate voltage levels from a ADC. Bluetooth
  * is missing,(will be added soon) but should not be a problem to add. Just set
@@ -36,7 +37,7 @@ public class Simulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
+        for (;;) {
 
             collectionOfSensors().stream().map((sensor) -> {
                 sensor.generateValue();
@@ -49,12 +50,19 @@ public class Simulator {
                 } else if (sensor instanceof MoistSensor) {
                     System.out.println("Moist value: " + sensor.getValue());
                 }
+              
                 /*Add more options here, only for debug.*/
             });
-            System.out.println("");
-
+            /*Only for stdout, not real-life*/
+            System.out.println(new Bluetooth.BlueServer());
+            /*Sleep one second to control flow*/
+            try {
+                Thread.sleep(1000);                 //One second.
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
         }
-        System.out.println("");
+        
     }
 
     /*Add sensor objects in collectionOfSensors*/
