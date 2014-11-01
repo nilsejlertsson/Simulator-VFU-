@@ -54,7 +54,7 @@ public class Simulator {
                 /*Add more options here, only for debug.*/
             });
             /*Only for stdout, not real-life*/
-            System.out.println(new Bluetooth.BlueServer());
+            System.out.println(new Bluetooth.RemoteDeviceDiscovery());
             /*Sleep one second to control flow*/
             try {
                 Thread.sleep(1000);                 //One second.
