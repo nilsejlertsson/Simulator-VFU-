@@ -24,7 +24,7 @@ public class BlueServer {
 
     public BlueServer() {
      
-        System.out.println(LocalDevice.getProperty("bluecove.stack"));
+        System.out.println(LocalDevice.getProperty("bluecove.stack")+" Working object!");
     }
 
 }
