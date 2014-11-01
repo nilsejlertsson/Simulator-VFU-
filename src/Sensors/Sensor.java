@@ -23,12 +23,20 @@ import Generator.Generator;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
- * Abstract parent sensor, enforce constructor on children :-).
+ * Abstract parent sensor, enforce the use of a constructor on the children :-).
  * 
+ *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
 public abstract class Sensor {
+
+     /*Future indentification, can be removed if not desired*/
+    protected enum SensorType {
+
+        TEMPATURE, PRESSURE, MOIST, SPEED;
+    }
 
     protected int max, min;
     protected SensorType sensorType;
@@ -38,10 +46,11 @@ public abstract class Sensor {
         this.max = max;
         this.min = min;
     }
-    /*Must implement*/
+    
+    /*Children Must implement*/
     public abstract int getValue();
-
     public abstract Enum getSensorType();
+    
     /*Not enforced but can be overriden by the children*/
     public void generateValue() {
 

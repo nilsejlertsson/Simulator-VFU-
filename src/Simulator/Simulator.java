@@ -23,43 +23,45 @@ import Sensors.Sensor;
 import java.util.ArrayList;
 
 /**
- * Simulator with the purpose of simulate voltage levels from a ADC. 
- * Bluetooth is missing,(will be added soon) but should not be a problem to add. 
- * Just set up as a bluetooth client and push to server.
+ * Simulator with the purpose of simulate voltage levels from a ADC. Bluetooth
+ * is missing,(will be added soon) but should not be a problem to add. Just set
+ * up as a bluetooth client and push to server.
+ *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
 public class Simulator {
 
     /**
+     * Main method loop the sensors value and print for debug
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        for(int i =0;i<10;i++){
-        collectionOfSensors().stream().map((x) -> {
-            x.generateValue();
-            return x;
-        }).forEach((x) -> {
-            if (x instanceof TempatureSensor) {
-                System.out.println("Temp value: " + x.getValue());
-            }
-            else if (x instanceof SpeedSensor) {
-                System.out.println("Speed value: " + x.getValue());
-            }
-            else if (x instanceof MoistSensor) {
-                System.out.println("Moist value: " + x.getValue());
-            }
-            /*Add more options here*/
-        });
+        for (int i = 0; i < 10; i++) {
+            collectionOfSensors().stream().map((sensor) -> {
+                sensor.generateValue();
+                return sensor;
+            }).forEach((sensorInCollection) -> {
+                if (sensorInCollection instanceof TempatureSensor) {
+                    System.out.println("Temp value: " + sensorInCollection.getValue());
+                } else if (sensorInCollection instanceof SpeedSensor) {
+                    System.out.println("Speed value: " + sensorInCollection.getValue());
+                } else if (sensorInCollection instanceof MoistSensor) {
+                    System.out.println("Moist value: " + sensorInCollection.getValue());
+                }
+                /*Add more options here, only for debug.*/
+            });
             System.out.println("");
+        }
     }
-    }
-    /*Add sensor objects here*/
+    
+    /*Add sensor objects in collectionOfSensors*/
     public static ArrayList<Sensor> collectionOfSensors() {
         ArrayList<Sensor> sensorList = new ArrayList();
         sensorList.add(new TempatureSensor(1023, 0));
         sensorList.add(new SpeedSensor(1023, 0));
         sensorList.add(new MoistSensor(1023, 0));
-        
+        //add
         return sensorList;
     }
 

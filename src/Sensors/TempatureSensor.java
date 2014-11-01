@@ -16,9 +16,6 @@
  */
 package Sensors;
 
-import Generator.GenerateNumbers;
-import Generator.Generator;
-
 /**
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
@@ -36,15 +33,6 @@ public class TempatureSensor extends Sensor {
         return value;
     }
 
-    @Override
-    public void generateValue() {
-        GenerateNumbers gen = new Generator(max, min);
-        value = gen.getRandom();
-    }
-
-    /**
-     * @return the sens
-     */
     @Override
     public SensorType getSensorType() {
         return sensorType;

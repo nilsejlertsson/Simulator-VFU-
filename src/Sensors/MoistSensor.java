@@ -20,8 +20,6 @@ package Sensors;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import Generator.GenerateNumbers;
-import Generator.Generator;
 
 /**
  *
@@ -42,12 +40,6 @@ public class MoistSensor extends Sensor{
     @Override
     public Enum getSensorType() {
         return sensorType;
-    }
-    @Override
-    public void generateValue() {
-
-        GenerateNumbers gen = new Generator(max, min);
-        value = gen.getRandom();
     }
     
 }

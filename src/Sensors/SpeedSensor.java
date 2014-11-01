@@ -16,8 +16,7 @@
  */
 package Sensors;
 
-import Generator.GenerateNumbers;
-import Generator.Generator;
+
 
 /**
  *
@@ -34,12 +33,6 @@ public class SpeedSensor extends Sensor{
     @Override
     public int getValue() {
         return value;
-    }
-    
-    @Override
-    public void generateValue() {
-        GenerateNumbers gen = new Generator(max, min);
-        value = gen.getRandom();
     }
 
     @Override
