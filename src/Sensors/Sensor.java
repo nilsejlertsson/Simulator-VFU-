@@ -42,7 +42,7 @@ public abstract class Sensor {
     public abstract int getValue();
 
     public abstract Enum getSensorType();
-    /*Not enforced but should be overriden by the children*/
+    /*Not enforced but can be overriden by the children*/
     public void generateValue() {
 
         GenerateNumbers gen = new Generator(max, min);
