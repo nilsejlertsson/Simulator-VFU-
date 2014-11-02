@@ -29,7 +29,7 @@ import javax.bluetooth.*;
 
 /**
  *
- * @author Christian Bodelsson <bodelsson@gmail.com>
+ * @Modifyed by Christian Bodelsson <bodelsson@gmail.com>
  */
 public class RemoteDeviceDiscovery {
 
@@ -41,8 +41,9 @@ public class RemoteDeviceDiscovery {
 
         devicesDiscovered.clear();
 
-        DiscoveryListener listener = new DiscoveryListener() {
-
+        DiscoveryListener listener;
+        listener = new DiscoveryListener() {
+            
             @Override
             public void deviceDiscovered(RemoteDevice btDevice, DeviceClass cod) {
                 System.out.println("Device " + btDevice.getBluetoothAddress() + " found");
