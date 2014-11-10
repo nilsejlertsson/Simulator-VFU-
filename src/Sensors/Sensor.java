@@ -42,16 +42,13 @@ public abstract class Sensor{
     protected int max, min,high,low;
     protected int value;
     protected GenerateNumbers generatedSeed;
-    private FileWriter fileWriter;
+    
     public Sensor(int max, int min) {
-        try {
+  
             generatedSeed = new Generator(max, min);
             this.max = max;
             this.min = min;
-            fileWriter = new FileWriter("kalle.txt");
-        } catch (IOException ex) {
-            Logger.getLogger(Sensor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     /*Children must implement*/

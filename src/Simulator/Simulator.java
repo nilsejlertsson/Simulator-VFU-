@@ -22,7 +22,10 @@ import Sensors.PulseSensor;
 import Sensors.TempatureSensor;
 import Sensors.SpeedSensor;
 import Sensors.Sensor;
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,32 +47,38 @@ public class Simulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FileHandler fh = new FileHandler("kalle.txt", 0);
+        //Date date = new Date();
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+       // File file = new File(dateFormat.format(date) + ".txt");
+        FileHandler fh = new FileHandler();
         ArrayList<Sensor> li;
         li = collectionOfSensors();
         /*Forever*/
 
-        for (int i = 0; i < 10; i++) {
-            for (Sensor sensor : li) {
-                sensor.generateValue();
+        while (true) {
+            try {
+                li.stream().forEach((sensor) -> {
+                    sensor.generateValue();
+                });
+
+                li.stream().forEach((sensor) -> {
+                    if (sensor instanceof TempatureSensor) {
+                        System.out.println("Temp value: " + sensor.getValue());
+                    } else if (sensor instanceof SpeedSensor) {
+                        System.out.println("Speed value: " + sensor.getValue());
+                    } else if (sensor instanceof MoistSensor) {
+                        System.out.println("Moist value: " + sensor.getValue());
+                    } else if (sensor instanceof PulseSensor) {
+                        System.out.println("Pulse value: " + sensor.getValue());
+                    }
+                    /*Add more if-else here, for every extended new sensor*/
+                });
+                fh.appendToFile(li);
+                System.out.println("");
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            for (Sensor sensor : li) {
-
-                if (sensor instanceof TempatureSensor) {
-                    System.out.println("Temp value: " + sensor.getValue());
-                } else if (sensor instanceof SpeedSensor) {
-                    System.out.println("Speed value: " + sensor.getValue());
-                } else if (sensor instanceof MoistSensor) {
-                    System.out.println("Moist value: " + sensor.getValue());
-                } else if (sensor instanceof PulseSensor) {
-                    System.out.println("Pulse value: " + sensor.getValue());
-                }
-                /*Add more if-else here, for every extended new sensor*/
-
-            }
-            fh.appendToFile(li);
-            System.out.println("");
         }
 
     }
@@ -77,10 +86,10 @@ public class Simulator {
     /*Add sensor objects in collectionOfSensors*/
     public static ArrayList<Sensor> collectionOfSensors() {
         ArrayList<Sensor> sensorList = new ArrayList();
-        sensorList.add(new TempatureSensor(65500, 35000));
-        sensorList.add(new SpeedSensor(10000, 5000));
-        sensorList.add(new MoistSensor(15000, 10000));
-        sensorList.add(new PulseSensor(65531, 0));
+        sensorList.add(new TempatureSensor(65500, 65450));
+        sensorList.add(new SpeedSensor(200, 0));
+        sensorList.add(new MoistSensor(150, 0));
+        sensorList.add(new PulseSensor(1000, 500));
         //add
         return sensorList;
     }
