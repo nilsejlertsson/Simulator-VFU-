@@ -8,6 +8,10 @@ package Sensors;
 import Generator.GenerateNumbers;
 import Generator.Generator;
 import Simulator.SensorHooks;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * Copyright (C) 2014 Christian Bodelsson <bodelsson@gmail.com>
  *
@@ -38,12 +42,16 @@ public abstract class Sensor{
     protected int max, min,high,low;
     protected int value;
     protected GenerateNumbers generatedSeed;
-    
+    private FileWriter fileWriter;
     public Sensor(int max, int min) {
-        generatedSeed = new Generator(max, min);
-        this.max = max;
-        this.min = min;
-        
+        try {
+            generatedSeed = new Generator(max, min);
+            this.max = max;
+            this.min = min;
+            fileWriter = new FileWriter("kalle.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(Sensor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /*Children must implement*/
@@ -57,4 +65,6 @@ public abstract class Sensor{
 
         value = generatedSeed.getRandom();
     }
+    
+    
 }
