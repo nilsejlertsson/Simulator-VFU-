@@ -1,3 +1,5 @@
+package Simulator;
+
 /*
  * Copyright (C) 2014 Christian Bodelsson <bodelsson@gmail.com>
  *
@@ -14,30 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package Sensors;
-
-import Simulator.SensorHooks;
-
 /**
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
-public class TempatureSensor extends Sensor implements SensorHooks{
-
-    public TempatureSensor(int max, int min) {
-        super(max, min);
-    
-    }
-
-    @Override
-    public int getValue() {
-
-        return value;
-    }
-
-
-  
-
-
-
+public interface SensorHooks {
+    public int getValue();
+    public void generateValue();
+   
 }

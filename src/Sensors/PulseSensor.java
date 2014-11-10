@@ -22,22 +22,19 @@ import Simulator.SensorHooks;
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
-public class TempatureSensor extends Sensor implements SensorHooks{
-
-    public TempatureSensor(int max, int min) {
-        super(max, min);
+public class PulseSensor extends Sensor implements SensorHooks{
     
+    public PulseSensor(int max,int min){
+        super(max, min);
     }
 
     @Override
     public int getValue() {
-
         return value;
     }
 
 
-  
 
 
-
+    
 }

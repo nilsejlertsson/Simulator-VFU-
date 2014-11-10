@@ -17,10 +17,13 @@
 package Simulator;
 
 import Sensors.MoistSensor;
+import Sensors.PulseSensor;
 import Sensors.TempatureSensor;
 import Sensors.SpeedSensor;
 import Sensors.Sensor;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * Simulator with the purpose of simulate voltage levels from a ADC. Bluetooth
  * is missing,(will be added soon) but should not be a problem to add. Just set
@@ -32,38 +35,66 @@ public class Simulator {
 
     /**
      * Main method loop the sensors value and print to stdout
+     * Example practical use with SensorHooks interface:
+     * Sensor sen = new <X>Sensor(5000, 10);
+     * sen.generateValue();
+     * System.out.println(sen.getValue());
+     * or
+     * list.add(sen.getValue());
+     * or 
+     * Store to text file on disk
      *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        for (int i = 0; i < 10; i++) {
+        /*Forever*/
+   
+       
+        while(true){
 
-            collectionOfSensors().stream().map((sensor) -> {
-                sensor.generateValue();
-                return sensor;
-            }).forEach((sensor) -> {
-                if (sensor instanceof TempatureSensor) {
-                    System.out.println("Temp value: " + sensor.getValue());
-                } else if (sensor instanceof SpeedSensor) {
-                    System.out.println("Speed value: " + sensor.getValue());
-                } else if (sensor instanceof MoistSensor) {
-                    System.out.println("Moist value: " + sensor.getValue());
-                }
-                /*Add more options here, only for debug.*/
-            });
-            System.out.println("");
+            try {
+                collectionOfSensors().stream().map((sensor) -> {//new java 8 lambda :-)
+                    sensor.generateValue();
+                    
+                    return sensor;
+                }).forEach((sensor) -> {
+                    if (sensor instanceof TempatureSensor) {
+                        System.out.println("Temp value: " + sensor.getValue());
+                        
+                    } else if (sensor instanceof SpeedSensor) {
+                        System.out.println("Speed value: " + sensor.getValue());
+              
+       
+                    } else if (sensor instanceof MoistSensor) {
+                        System.out.println("Moist value: " + sensor.getValue());
+               
+     
+                    } else if (sensor instanceof PulseSensor) {
+                        System.out.println("Pulse value: " + sensor.getValue());
+                  
+             
+                    }
+                    /*Add more if-else here, for every extended new sensor*/
+                });
+              
+                Thread.sleep(1000);
+                System.out.println("");
+                
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Simulator.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
-        System.out.println("");
+        
     }
 
     /*Add sensor objects in collectionOfSensors*/
     public static ArrayList<Sensor> collectionOfSensors() {
         ArrayList<Sensor> sensorList = new ArrayList();
-        sensorList.add(new TempatureSensor(1023, 0));
-        sensorList.add(new SpeedSensor(1023, 0));
-        sensorList.add(new MoistSensor(1023, 0));
+        sensorList.add(new TempatureSensor(65500, 35000));
+        sensorList.add(new SpeedSensor(10000, 5000));
+        sensorList.add(new MoistSensor(15000, 10000));
+        sensorList.add(new PulseSensor(65531,0));
         //add
         return sensorList;
     }

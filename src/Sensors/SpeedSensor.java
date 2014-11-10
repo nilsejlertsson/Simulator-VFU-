@@ -16,17 +16,18 @@
  */
 package Sensors;
 
+import Simulator.SensorHooks;
+
 
 
 /**
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
-public class SpeedSensor extends Sensor{
+public class SpeedSensor extends Sensor implements SensorHooks{
     
     public SpeedSensor(int max,int min){
         super(max, min);
-        sensorType = SensorType.SPEED;
         
     }
 
@@ -35,10 +36,8 @@ public class SpeedSensor extends Sensor{
         return value;
     }
 
-    @Override
-    public Enum getSensorType() {
-        return sensorType;
-    }
+   
+
     
     
 }

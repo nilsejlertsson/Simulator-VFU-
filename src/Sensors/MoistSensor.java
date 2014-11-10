@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Sensors;
+
+import Simulator.SensorHooks;
+
 /*
  * Copyright (C) 2014 Christian Bodelsson <bodelsson@gmail.com>
  *
@@ -25,11 +28,11 @@ package Sensors;
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
-public class MoistSensor extends Sensor{
+public class MoistSensor extends Sensor implements SensorHooks{
     
     public MoistSensor(int max, int min){
         super(max, min);
-        sensorType = SensorType.MOIST;
+
     }
 
     @Override
@@ -37,9 +40,7 @@ public class MoistSensor extends Sensor{
         return value;
     }
 
-    @Override
-    public Enum getSensorType() {
-        return sensorType;
-    }
+
+
     
 }

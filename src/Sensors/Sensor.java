@@ -7,6 +7,7 @@ package Sensors;
 
 import Generator.GenerateNumbers;
 import Generator.Generator;
+import Simulator.SensorHooks;
 /*
  * Copyright (C) 2014 Christian Bodelsson <bodelsson@gmail.com>
  *
@@ -30,16 +31,11 @@ import Generator.Generator;
  *
  * @author Christian Bodelsson <bodelsson@gmail.com>
  */
-public abstract class Sensor {
+public abstract class Sensor{
 
-    /*Future indentification, can be removed if not desired*/
-    protected enum SensorType {
 
-        TEMPATURE, PRESSURE, MOIST, SPEED;
-    }
     /*Pass down to children, by protected fields*/
-    protected int max, min;
-    protected SensorType sensorType;
+    protected int max, min,high,low;
     protected int value;
     protected GenerateNumbers generatedSeed;
     
@@ -51,11 +47,12 @@ public abstract class Sensor {
     }
 
     /*Children must implement*/
+
     public abstract int getValue();
 
-    public abstract Enum getSensorType();
 
     /*Not enforced but can be overriden by the children*/
+  
     public void generateValue() {
 
         value = generatedSeed.getRandom();
